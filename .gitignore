@@ -1,0 +1,6 @@
+mkvenv/
+.vscode/
+testvenv/
+*.egg-info
+__pycache__/
+*.xlsx
