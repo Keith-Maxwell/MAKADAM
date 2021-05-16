@@ -23,14 +23,14 @@ setup(
     # There are some restrictions on what makes a valid project name
     # specification here:
     # https://packaging.python.org/specifications/core-metadata/#name
-    name="mariokart2excel",  # Required
+    name="makadam",  # Required
     # Versions should comply with PEP 440:
     # https://www.python.org/dev/peps/pep-0440/
     #
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version="0.1.0",  # Required
+    version="0.1.1",  # Required
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
@@ -59,7 +59,7 @@ setup(
     #
     # This field corresponds to the "Home-Page" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#home-page-optional
-    url="https://github.com/Keith-Maxwell/MarioKart2Excel",  # Optional
+    url="https://github.com/Keith-Maxwell/MAKADAM",  # Optional
     # This should be your name or the name of the organization which owns the
     # project.
     author="Max Perraudin",  # Optional
@@ -96,7 +96,7 @@ setup(
     # Note that this is a list of additional keywords, separated
     # by commas, to be used to assist searching for the distribution in a
     # larger catalog.
-    keywords="MarioKart, OCR, Excel",  # Optional
+    keywords="MarioKart, OCR, Excel, cli",  # Optional
     # When your source code is in a subdirectory under the project root, e.g.
     # `src/`, it is necessary to specify the `package_dir` argument.
     # package_dir={'': 'src'},  # Optional
@@ -110,7 +110,7 @@ setup(
     #   py_modules=["my_module"],
     #
     packages=find_packages(where="."),  # Required
-    py_modules=["mariokart2excel"],
+    py_modules=["macadam"],
     # Specify which Python versions you support. In contrast to the
     # 'Programming Language' classifiers above, 'pip install' will check this
     # and refuse to install the project if the version does not match. See
@@ -152,7 +152,7 @@ setup(
     # platform.
     entry_points={
         "console_scripts": [
-            "mariokart2excel = mariokart2excel:main",
+            "makadam = makadam:main",
         ],
     },
     # List additional URLs that are relevant to your project as a dict.
@@ -165,9 +165,9 @@ setup(
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
     project_urls={  # Optional
-        "Bug Reports": "https://github.com/Keith-Maxwell/MarioKart2Excel/issues",
+        "Bug Reports": "https://github.com/Keith-Maxwell/MAKADAM/issues",
         #    'Funding': 'https://donate.pypi.org',
         #    'Say Thanks!': 'http://saythanks.io/to/example',
-        "Source": "https://github.com/Keith-Maxwell/MarioKart2Excel",
+        "Source": "https://github.com/Keith-Maxwell/MAKADAM",
     },
 )

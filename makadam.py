@@ -120,6 +120,7 @@ def main(img_dir, players, workbook, save_copy):
     # TODO : read the data already present in the notebook
     # TODO : append the new data to the correct place (existing columns that match with the player)
     ws = wb.active
+    # TODO : add --header flag
     ws.append(players)  # Add headers
 
     # --------- Verify the validity of img_dir ----------

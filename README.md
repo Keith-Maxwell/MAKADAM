@@ -1,4 +1,4 @@
-![MarioKart2Excel](https://socialify.git.ci/Keith-Maxwell/MarioKart2Excel/image?description=1&font=Raleway&language=1&logo=https%3A%2F%2F1.bp.blogspot.com%2F-GZl7vDxEWIM%2FWUaVEfHpx_I%2FAAAAAAABM-c%2FIgHT-DryPLoouFVIaqNI3ZZgjrBZy0UcQCLcBGAs%2Fs1600%2F600px-MK8_Deluxe_Art_-_Mario_%252528transparent%252529.png&owner=1&pattern=Charlie%20Brown&theme=Dark)
+![MAKADAM](<https://socialify.git.ci/Keith-Maxwell/MAKADAM/image?description=1&descriptionEditable=MarioKartDataMiner%20(MAKADAM)%20uses%20Optical%20Character%20Recognition%20to%20get%20data%20from%20Mario%20Kart%20screenshots&font=Inter&issues=1&language=1&logo=https%3A%2F%2F1.bp.blogspot.com%2F-GZl7vDxEWIM%2FWUaVEfHpx_I%2FAAAAAAABM-c%2FIgHT-DryPLoouFVIaqNI3ZZgjrBZy0UcQCLcBGAs%2Fs1600%2F600px-MK8_Deluxe_Art_-_Mario_%252528transparent%252529.png&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Dark>)
 
 # Use case
 
