@@ -136,7 +136,7 @@ def main(img_dir, players, workbook, save_copy):
     # -------- Iterate over all files in img_dir ---------
     for img_name in tqdm(img_list):
         if img_name.endswith(".jpg"):
-            img = cv2.imread(os.path.join("img", img_name), -1)
+            img = cv2.imread(os.path.join(img_dir, img_name), -1)
         else:  # If file is not an image, skip the iteration
             continue
 
