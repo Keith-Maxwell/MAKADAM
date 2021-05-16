@@ -26,17 +26,17 @@ On your computer, navigate to the Mario Kart directory and copy the files wherev
 
 First, install the software by following the instructions in the section [installation](#installation)
 
-Use the command `mariokart2excel` followed by the arguments and options.
+Use the command `makadam` followed by the arguments and options.
 The detailed list of arguments is shown with :
 
 ```
-mariokart2excel --help
+makadam --help
 ```
 
 The output is :
 
 ```
-Usage: mariokart2excel [OPTIONS] IMG_DIR PLAYERS...
+Usage: makadam [OPTIONS] IMG_DIR PLAYERS...
 
   Read the finish grid from MarioKart screenshots and fill an Excel workbook
   with the results
@@ -66,7 +66,7 @@ The positions will be written in the Excel file given with the option `--workboo
 ### Example
 
 ```
-mariokart2excel ./img Makss Marie PH alice Player --workbook new_workbook.xlsx
+makadam ./img Makss Marie PH alice Player --workbook new_workbook.xlsx
 ```
 
 This command will read through the images stored in the `./img` directory of this repo, and search for the positions of the players `Makss`, `Marie`, `PH`, `alice` and `Player`. Their positions will then be written to a new excel file called `new_workbook.xlsx` and will look like this :
@@ -89,7 +89,7 @@ This command will read through the images stored in the `./img` directory of thi
 This code is not yet published on Pypi, so you'll have to clone the repo. Wherever you want, open a terminal and run
 
 ```
-git clone https://github.com/Keith-Maxwell/MarioKart2Excel.git
+git clone https://github.com/Keith-Maxwell/MAKADAM.git
 ```
 
 It is strongly advised to create a virtual environment
