@@ -1,6 +1,8 @@
-mkvenv/
+.mkenv/
 .vscode/
-testvenv/
-*.egg-info
 __pycache__/
+tournoi*/
+*.egg-info
 *.xlsx
+*.mp4
+img/ML_dataset/*/
