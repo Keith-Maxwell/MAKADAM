@@ -4,7 +4,7 @@
 
 You want to track your progress on Mario Kart 8 on Nintendo Switch or want to keep a record of your positions with your friends, but you don't have access to your computer to fill an Excel file while gaming ?
 
-With **MarioKart2Excel**, you only need to take a screenshot of each race result. So you are not disturbed while you're gaming and can fully focus on enjoying the race.
+With **MaKaDaM**, you only need to take a screenshot of each race result. So you are not disturbed while you're gaming and can fully focus on enjoying the race.
 
 Use this as you want !
 

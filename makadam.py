@@ -12,7 +12,7 @@ BOTTOM_RIGHT_DATA_CORNER = (945, 670)  # x,y
 DEFAULT_WB_NAME = "default_workbook.xlsx"
 
 
-def image_preprocessing(image, tl_corner, br_corner):
+def image_preprocessing(image, tl_corner=None, br_corner=None):
     """Crop an image and apply a black and white mask
 
     Parameters
@@ -30,7 +30,8 @@ def image_preprocessing(image, tl_corner, br_corner):
         binary image ready to be read by OCR
     """
     # Crop with slicing
-    image = image[tl_corner[1] : br_corner[1], tl_corner[0] : br_corner[0]]
+    if tl_corner and br_corner:
+        image = image[tl_corner[1] : br_corner[1], tl_corner[0] : br_corner[0]]
 
     # Convert to HSV channels
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -156,7 +157,7 @@ def main(img_dir, players, workbook, save_copy):
                 positions.append(finish_grid.index(player) + 1)
             except ValueError:  # happens when the OCR did not succeed
                 click.echo(
-                    f"\n[WARN] Player '{player}' was not found in the finish grid :( The image I had trouble with is called {img_name}"
+                    f"\n\n[WARN] Player '{player}' was not found in the finish grid :( The image I had trouble with is {os.path.abspath(img_name)}\n"
                 )
                 positions.append("NA")
         # add the positions to a new row in the worksheet
