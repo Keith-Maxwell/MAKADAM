@@ -4,6 +4,7 @@ import os
 import cv2
 import numpy as np
 
+RESOLUTION = (1280, 720)
 tl_corner = (1078, 574)  # top left corner
 br_corner = (1195, 676)  # bottom right corner
 
@@ -17,6 +18,8 @@ for position in range(1, 13):
         if file.endswith(".mp4"):
             # Open the video file with openCV
             cap = cv2.VideoCapture(f"img\\ML_dataset\\{position}\\{file}")
+            cap.set(3, RESOLUTION[0])
+            cap.set(4, RESOLUTION[1])
             while True:
                 # read each frame
                 ret, img = cap.read()
