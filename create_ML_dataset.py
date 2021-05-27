@@ -2,7 +2,9 @@ import gc
 import os
 
 import cv2
+import h5py
 import numpy as np
+from tqdm import tqdm
 
 RESOLUTION = (1280, 720)
 tl_corner = (1078, 574)  # top left corner
@@ -11,7 +13,7 @@ br_corner = (1195, 676)  # bottom right corner
 data = []
 labels = []
 
-for position in range(1, 13):
+for position in tqdm(range(1, 13)):
     n = 1
     for file in os.listdir(os.path.join("img", "ML_dataset", str(position))):
         # iterates over every file and checks if it's a video
@@ -31,7 +33,7 @@ for position in range(1, 13):
                 else:
                     # crop the image to focus on the position
                     img = img[tl_corner[1] : br_corner[1], tl_corner[0] : br_corner[0]]
-                    cv2.imshow("img", img)
+                    # cv2.imshow("img", img)
 
                     # save one image out of 5 to not overload memory
                     if n % 5 == 0:
@@ -51,6 +53,8 @@ for position in range(1, 13):
             cv2.destroyAllWindows()  # close all windows
             gc.collect()  # try to clean the memory, to avoid memory issues
 
-# Export the dataset to a .npy file for easy access later
-np.save(os.path.join("img", "ML_dataset", "dataset"), np.array(data))
-np.save(os.path.join("img", "ML_dataset", "labels"), np.array(labels))
+
+h5_file = h5py.File(os.path.join("img", "ML_dataset", "dataset.h5"), "w")
+h5_file.create_dataset("dataset", data=np.array(data))
+h5_file.create_dataset("labels", data=np.array(labels))
+h5_file.close()
