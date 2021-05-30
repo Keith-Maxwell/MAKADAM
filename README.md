@@ -14,7 +14,7 @@ In the current version, MAKADAM works by analysing screenshots of the game resul
 
 In _Mario Kart 8 Deluxe_, at the end of the race, you are presented with a screen like the following :
 
-![results](img\Samples\sample1.jpg)
+![results](img/Samples/sample1.jpg)
 
 You must take a screenshot using the little square button on your Switch controller.
 
