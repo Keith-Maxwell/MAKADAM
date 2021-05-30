@@ -7,8 +7,8 @@ import numpy as np
 from tqdm import tqdm
 
 RESOLUTION = (1280, 720)
-tl_corner = (1078, 574)  # top left corner
-br_corner = (1195, 676)  # bottom right corner
+TOP_LEFT_CORNER = (1078, 574)  # top left corner
+BOTTOM_RIGHT_CORNER = (1195, 676)  # bottom right corner
 
 data = []
 labels = []
@@ -32,7 +32,10 @@ for position in tqdm(range(1, 13)):
 
                 else:
                     # crop the image to focus on the position
-                    img = img[tl_corner[1] : br_corner[1], tl_corner[0] : br_corner[0]]
+                    img = img[
+                        TOP_LEFT_CORNER[1] : BOTTOM_RIGHT_CORNER[1],
+                        TOP_LEFT_CORNER[0] : BOTTOM_RIGHT_CORNER[0],
+                    ]
                     # cv2.imshow("img", img)
 
                     # save one image out of 5 to not overload memory
