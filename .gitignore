@@ -6,3 +6,4 @@ tournoi*/
 *.xlsx
 *.mp4
 img/ML_dataset/*/
+.pytest_cache/
