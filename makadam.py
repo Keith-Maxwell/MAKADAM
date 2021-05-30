@@ -103,7 +103,13 @@ def apply_overlay(image, OCR_results):
     show_default=True,
     help="Save the new workbook as a copy or overwrite the old one",
 )
-def main(img_dir, players, workbook, save_copy):
+@click.option(
+    "--header/--no-header",
+    default=True,
+    show_default=True,
+    help="Add a header row with the player names",
+)
+def main(img_dir, players, workbook, save_copy, header):
     """Read the finish grid from MarioKart screenshots and fill an Excel workbook with the results
 
     IMG-DIR is the path to the directory where your screenshots are saved
@@ -122,7 +128,8 @@ def main(img_dir, players, workbook, save_copy):
     # TODO : append the new data to the correct place (existing columns that match with the player)
     ws = wb.active
     # TODO : add --header flag
-    ws.append(players)  # Add headers
+    if header:
+        ws.append(players)  # Add headers
 
     # --------- Verify the validity of img_dir ----------
     try:
