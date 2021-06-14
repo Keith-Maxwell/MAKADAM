@@ -4,6 +4,8 @@ import os
 import cv2
 import h5py
 import numpy as np
+from skimage import img_as_ubyte
+from skimage.util import random_noise
 from tqdm import tqdm
 
 RESOLUTION = (1280, 720)
@@ -26,7 +28,7 @@ for position in tqdm(range(1, 13)):
                 # read each frame
                 ret, img = cap.read()
 
-                if not ret:  # checks if the read was successful
+                if not ret:  # checks if the read was unsuccessful
                     n += 1
                     break
 
@@ -36,6 +38,7 @@ for position in tqdm(range(1, 13)):
                         TOP_LEFT_CORNER[1] : BOTTOM_RIGHT_CORNER[1],
                         TOP_LEFT_CORNER[0] : BOTTOM_RIGHT_CORNER[0],
                     ]
+                    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
                     # cv2.imshow("img", img)
 
                     # save one image out of 5 to not overload memory
@@ -45,6 +48,10 @@ for position in tqdm(range(1, 13)):
                         )
                         # append the data and label to the dataset list
                         data.append(img)
+                        data.append(img_as_ubyte(random_noise(img)))
+                        data.append(img_as_ubyte(random_noise(img)))
+                        labels.append(position)
+                        labels.append(position)
                         labels.append(position)
 
                     n += 1  # allows the naming of each file differently

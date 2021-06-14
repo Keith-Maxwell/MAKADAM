@@ -77,6 +77,10 @@ plt.suptitle("relative amount of photos per type")
 plot_bar(y_train, loc="left")
 plot_bar(y_test, loc="right")
 plt.legend([f"train ({len(y_train)} photos)", f"test ({len(y_test)} photos)"])
+plt.show()
+plt.suptitle("total amount of photos per type")
+plot_bar(y, relative=False)
+plt.show()
 
 
 # %%
@@ -84,13 +88,13 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-from utils import RGB2Gray2ShapeTransformer
+from utils import ShapeTransformer
 
 pipe = Pipeline(
     [
-        ("grayify", RGB2Gray2ShapeTransformer()),
+        ("reshapify", ShapeTransformer()),
         ("scalify", StandardScaler()),
-        ("classify", SGDClassifier(random_state=42, max_iter=1000, tol=1e-3)),
+        ("classify", SGDClassifier(loss="log", random_state=42, max_iter=1000, tol=1e-3)),
     ]
 )
 clf = pipe.fit(X_train, y_train)

@@ -7,3 +7,4 @@ tournoi*/
 *.mp4
 img/ML_dataset/*/
 .pytest_cache/
+img/ML_dataset/dataset.h5
