@@ -25,6 +25,6 @@ This allows to easily label the data
 
 ## Automated dataset creation
 
-The python script `create_ML_dataset.py` iterates trough each position directory and reads the video samples frame by frame. It crops the position and saves the image in the directory corresponding to the position, thus labelling the data. The image and label are also saved in numpy arrays that are then exported as `dataset.npy` and `labels.npy`.
+The python script [`create_ML_dataset.py`](../../create_ML_dataset.py) iterates trough each position directory and reads the video samples frame by frame. It crops the position and saves the image in the directory corresponding to the position, thus labelling the data. The image and label are also saved in numpy arrays that are then exported as `dataset.h5`.
 
-These `.npy` files can easily be imported to train a ML model.
+This `.h5` file can easily be imported and read using the `h5py` library to recover the dataset and train a ML model.

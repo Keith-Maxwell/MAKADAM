@@ -30,13 +30,17 @@ while True:
         TOP_LEFT_CORNER[1] : BOTTOM_RIGHT_CORNER[1],
         TOP_LEFT_CORNER[0] : BOTTOM_RIGHT_CORNER[0],
     ]
+
     gray_cropped_frame = cv2.cvtColor(cropped_frame, cv2.COLOR_BGR2GRAY)
+
     # Get the probabilities of each category
     # looks like : [5%, 5%, 60%, 5%, 0%, 3%, 10%, 5%, 5%, 0%, 0%, 2%]
     probabilities = list(model.predict_proba(np.array([gray_cropped_frame]))[0])
+
     # The best prediction's index correspond to the position in the race
     best_prediction = max(probabilities)
     position = probabilities.index(best_prediction) + 1
+
     # Define a threshold to accept a prediction or not
     if best_prediction > DETECTION_THRESHOLD:
         print(position)

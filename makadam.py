@@ -7,83 +7,11 @@ import numpy as np
 from openpyxl import Workbook, load_workbook
 from tqdm import tqdm
 
+from utils import apply_overlay, image_preprocessing
+
 TOP_LEFT_DATA_CORNER = (675, 50)  # x,y
 BOTTOM_RIGHT_DATA_CORNER = (945, 670)  # x,y
 DEFAULT_WB_NAME = "default_workbook.xlsx"
-
-
-def image_preprocessing(image, tl_corner=None, br_corner=None):
-    """Crop an image and apply a black and white mask
-
-    Parameters
-    ----------
-    image : numpy array
-        Image with 3 channels (BGR).
-    tl_corner : Tuple
-        Coordinates (x,y) of the top left corner of the rectangle to crop
-    br_corner : Tuple
-        Coordinates (x,y) of the bottom right corner of the rectangle to crop
-
-    Returns
-    -------
-    numpy array
-        binary image ready to be read by OCR
-    """
-    # Crop with slicing
-    if tl_corner and br_corner:
-        image = image[tl_corner[1] : br_corner[1], tl_corner[0] : br_corner[0]]
-
-    # Convert to HSV channels
-    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    # define lower and upper bounds of the filter
-    lower = np.array([0, 0, 210])
-    upper = np.array([255, 255, 255])
-    # return the mask
-    return cv2.inRange(hsv, lower, upper)
-
-
-def apply_overlay(image, OCR_results):
-    """Apply an overlay on the image with bounding boxes
-    and the text recognized, along with the confidence level
-
-    Parameters
-    ----------
-    image : numpy array
-        image on which the overlay will be aplied (for better results, use BGR image)
-    OCR_results : list[list]
-        Detailed results given by the easyocr.Reader.readtext() function
-
-    Returns
-    -------
-    numpy array
-        image with the overlay of boxes and text recognized
-    """
-    image_with_overlay = image.copy()
-    # loop over the results
-    for (bbox, text, prob) in OCR_results:
-        # display the OCR'd text and associated probability
-        # print("[INFO] {:.4f}: {}".format(prob, text))
-
-        # unpack the bounding box
-        (tl, tr, br, bl) = bbox
-        tl = (int(tl[0]), int(tl[1]))
-        tr = (int(tr[0]), int(tr[1]))
-        br = (int(br[0]), int(br[1]))
-        bl = (int(bl[0]), int(bl[1]))
-
-        # draw the box surrounding the text along
-        # with the OCR'd text itself and the probability
-        cv2.rectangle(image_with_overlay, tl, br, (0, 255, 0), 2)
-        cv2.putText(
-            image_with_overlay,
-            text + " " + str(round(prob, 2)),
-            (br[0] + 5, br[1]),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            0.8,
-            (0, 0, 255),
-            2,
-        )
-    return image_with_overlay
 
 
 @click.command()
@@ -124,10 +52,9 @@ def main(img_dir, players, workbook, save_copy, header):
         wb = Workbook()
         click.echo(f"[INFO] The file named '{workbook}' has not been found, so it will be created")
 
-    # TODO : read the data already present in the notebook
+    # TODO : read the data already present in the workbook
     # TODO : append the new data to the correct place (existing columns that match with the player)
     ws = wb.active
-    # TODO : add --header flag
     if header:
         ws.append(players)  # Add headers
 
