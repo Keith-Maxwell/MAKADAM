@@ -1,4 +1,5 @@
 import json
+import platform
 from time import time
 
 import cv2
@@ -12,8 +13,12 @@ TOP_LEFT_CORNER = (1078, 574)  # top left corner
 BOTTOM_RIGHT_CORNER = (1195, 676)  # bottom right corner
 DETECTION_THRESHOLD = 0.6
 
-video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-# video = cv2.VideoCapture(".\\img\\vid\\2021051618455200_s.mp4", cv2.CAP_DSHOW)
+if platform.system().startswith("Windows"):
+    OPENCV_BACKEND = cv2.CAP_DSHOW
+else:
+    OPENCV_BACKEND = cv2.CAP_ANY
+
+video = cv2.VideoCapture(2, OPENCV_BACKEND)
 video.set(3, RESOLUTION[0])
 video.set(4, RESOLUTION[1])
 video.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
