@@ -122,7 +122,14 @@ setup(
     #
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=["Click", "opencv-python", "openpyxl", "easyocr", "tqdm", "scikit-learn"],  # Optional
+    install_requires=[
+        "Click",
+        "opencv-python",
+        "openpyxl",
+        "easyocr",
+        "tqdm",
+        "scikit-learn",
+    ],  # Optional
     # List additional groups of dependencies here (e.g. development
     # dependencies). Users will be able to install these using the "extras"
     # syntax, for example:
@@ -152,7 +159,7 @@ setup(
     # platform.
     entry_points={
         "console_scripts": [
-            "makadam = makadam:main",
+            "makadam = makadam:cli",
         ],
     },
     # List additional URLs that are relevant to your project as a dict.

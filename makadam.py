@@ -7,14 +7,26 @@ import numpy as np
 from openpyxl import Workbook, load_workbook
 from tqdm import tqdm
 
-from utils import apply_overlay, image_preprocessing
+from utils import apply_overlay, image_preprocessing, returnCameraIndexes
 
 TOP_LEFT_DATA_CORNER = (675, 50)  # x,y
 BOTTOM_RIGHT_DATA_CORNER = (945, 670)  # x,y
 DEFAULT_WB_NAME = "default_workbook.xlsx"
 
+# ----------------------------
+@click.group()
+def cli():
+    pass
 
-@click.command()
+
+# ----------------------------
+@cli.command()
+def camera():
+    click.echo(returnCameraIndexes())
+
+
+# ----------------------------
+@cli.command()
 @click.argument("img-dir", type=click.Path(exists=True))
 @click.argument("players", nargs=-1, required=True)
 @click.option(
@@ -37,7 +49,7 @@ DEFAULT_WB_NAME = "default_workbook.xlsx"
     show_default=True,
     help="Add a header row with the player names",
 )
-def main(img_dir, players, workbook, save_copy, header):
+def scores(img_dir, players, workbook, save_copy, header):
     """Read the finish grid from MarioKart screenshots and fill an Excel workbook with the results
 
     IMG-DIR is the path to the directory where your screenshots are saved
@@ -105,4 +117,4 @@ def main(img_dir, players, workbook, save_copy, header):
 
 
 if __name__ == "__main__":
-    main()
+    scores()

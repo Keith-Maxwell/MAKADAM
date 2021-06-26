@@ -26,17 +26,17 @@ On your computer, navigate to the Mario Kart directory and copy the files wherev
 
 First, install the software by following the instructions in the section [installation](#installation)
 
-Use the command `makadam` followed by the arguments and options.
+Use the command `makadam scores` followed by the arguments and options.
 The detailed list of arguments is shown with :
 
 ```
-makadam --help
+makadam scores --help
 ```
 
 For basic usage, type
 
 ```
-makadam path/to/img/folder player_name1 ...
+makadam scores path/to/img/folder player_name1 ...
 ```
 
 You must enter a path to a folder and at least one player name. The other parameters are optional.
@@ -52,7 +52,7 @@ The positions will be written in the Excel file given with the option `--workboo
 In this current directory :
 
 ```
-makadam ./img/Samples Makss Marie PH alice Player --workbook new_workbook.xlsx
+makadam scores ./img/Samples Makss Marie PH alice Player --workbook new_workbook.xlsx
 ```
 
 This command will read through the images stored in the `./img/Samples` directory of this repo, and search for the positions of the players `Makss`, `Marie`, `PH`, `alice` and `Player`. Their positions will then be written to a new excel file called `new_workbook.xlsx` and will look like this :
@@ -102,3 +102,4 @@ This will also install all the dependencies, mainly the following:
 - openpyxl
 - click
 - tqdm
+- Scikit-learn
