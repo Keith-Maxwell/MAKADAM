@@ -26,18 +26,27 @@ DEFAULT_WB_NAME = "default_workbook.xlsx"
 DETECTION_THRESHOLD = 0.6
 
 
-def show_available_ports():
-    click.echo("Please ignore the following warnings")
-    indexes = returnCameraIndexes()
-    click.secho("The following camera ports are active :", fg="green")
-    for i in indexes:
-        if i == 0:
-            click.echo(
-                "- Port 0 (if you are using a laptop, this is probably the integrated camera)"
-            )
-        else:
-            click.echo(f"- Port {i}")
-    return indexes
+def validate_video_port(value):
+    ok_ports = returnCameraIndexes()
+
+    if value == -1:  # default value, prompt the user
+        click.secho("The following video ports are active :", fg="green")
+
+        for i in ok_ports:
+            if i == 0:
+                click.echo(
+                    "- Port 0 (if you are using a laptop, this is probably the integrated camera)"
+                )
+            else:
+                click.echo(f"- Port {i}")
+
+        click.secho("Please choose a port", fg="blue")
+        value = int(click.prompt("Port"))
+
+    if value not in ok_ports:
+        raise click.BadParameter("port must be available")
+    else:
+        return value
 
 
 def show_tutorial():
@@ -68,17 +77,10 @@ def show_tutorial():
 
 
 # ----------------------------
+# Define a group of commands. Allows to have multiple commands after `makadam`, like `makadam live` or `makadam scores`
 @click.group()
 def cli():
     pass
-
-
-# ----------------------------
-@cli.command()
-def camera():
-    """Scan the available camera ports on your computer and displays the active ones."""
-
-    show_available_ports()
 
 
 # ----------------------------
@@ -175,13 +177,8 @@ def scores(img_dir, players, workbook, save_copy, header):
 @cli.command()
 @click.option("--video-port", type=click.INT, default=-1)
 def live(video_port):
-    if video_port == -1:
-        indexes = show_available_ports()
-        click.secho("Please choose a port", fg="blue")
-        video_port = int(click.prompt("Port"))
-
-        if video_port not in indexes:
-            raise click.BadParameter("port must be available")
+    """Extract position data from live MarioKart video. Results are dumped in a file."""
+    video_port = validate_video_port(video_port)
 
     video = create_video_capture(video_port, RESOLUTION)
 
