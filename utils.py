@@ -116,5 +116,20 @@ def returnCameraIndexes():
     return arr
 
 
+def create_video_capture(input_port: int, resolution: tuple[int, int]):
+    import platform
+
+    if platform.system().startswith("Windows"):
+        OPENCV_BACKEND = cv2.CAP_DSHOW
+    else:
+        OPENCV_BACKEND = cv2.CAP_ANY
+
+    video = cv2.VideoCapture(input_port, OPENCV_BACKEND)
+    video.set(3, resolution[0])
+    video.set(4, resolution[1])
+    video.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
+    return video
+
+
 if __name__ == "__main__":
     pass
