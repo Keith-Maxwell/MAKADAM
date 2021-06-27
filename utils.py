@@ -110,7 +110,7 @@ def returnCameraIndexes():
         cap = cv2.VideoCapture(index)
         if cap.read()[0]:
             arr.append(index)
-            cap.release()
+        cap.release()
         index += 1
         i -= 1
     return arr

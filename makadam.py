@@ -22,7 +22,18 @@ def cli():
 # ----------------------------
 @cli.command()
 def camera():
-    click.echo(returnCameraIndexes())
+    """Scan the available camera ports on your computer and displays the active ones."""
+
+    click.echo("Please ignore the following warnings")
+    indexes = returnCameraIndexes()
+    click.secho("The following camera ports are active :", fg="green")
+    for i in indexes:
+        if i == 0:
+            click.echo(
+                "- Port 0 (if you are using a laptop, this is probably the integrated camera)"
+            )
+        else:
+            click.echo(f"- Port {i}")
 
 
 # ----------------------------
